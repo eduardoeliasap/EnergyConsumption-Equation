@@ -12,12 +12,13 @@ p = 0.2818   # potencia
 t = 0.020    # tempo em miliseconds
 pack = 3     # numero de pacotes transmitidos no intervalo de tempo de analise nas simulações NS
 gr = 0.00001 # constante de energia no recebimento de pacotes
-gp = 0.95    # constante de energia no processamento de pacotes
+gp = 0.01    # constante de energia no processamento de pacotes
 
 n = 1
 while (n <= 10):
-    eq = ((((math.log10(n) * p) * t) + ((gr * t) * n)) * pack) * gp
+    eq = (((math.log10(n) * p) * t) + (((gr * t) * n) + gp))
     print ("Resp for n=" + str(n) + ": " + str(eq)) 
+    print ("Receive energy: " + str((gr * t) * n + gp))
     arquivoEquation.write(str(n) + ' ' + str(eq) + "\n")
 
     n=n+1
